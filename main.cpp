@@ -26,7 +26,6 @@ public:
         Match = match;
     }
 
-
     void setPoints(unsigned short points){ //Инкапсуляция с помощью set/get
         Points = points;
     }
@@ -42,7 +41,7 @@ public:
 
     void Assists(){ //расширение поведения
         std::cout << getPlayerName() << " gave away assists: ";
-        HeGetAssist(8);
+        HeGetAssist(Assist);
     }
 
     virtual void PlayerInfo(){
@@ -90,6 +89,11 @@ public:
     }
 };
 
+//Добавил функцию, ожидающую на вход абстракцию
+void getInfo(Basketball &Player_name) {
+    Player_name.PlayerInfo();
+}
+
 int main(){
     Player_Card Matvey(18, 60, 180, 10, 12);
     Player_Card Slava(20, 70, 180, 15, 3);
@@ -97,11 +101,11 @@ int main(){
     std::cout << "Матвей и слава проигрывают 4 очка, у них есть время лишь на одну атаку, что же они будут делать?\n" << std::endl;
     std::cout << "Давайте посмотрим на их статистику сейчас" << std::endl;
     std::cout << "Матвей: ";
-    Matvey.PlayerInfo();
+    getInfo(Matvey);
     std::cout << "Слава: ";
-    Slava.PlayerInfo();
+    getInfo(Slava);
 
-    std::cout << std::endl << "И вот они атакуют, Слава отдает великолепную передачу из за спины прямо на Матвея, который находится за трехочковой линией" <<std::endl;
+    std::cout << std::endl << "И вот они атакуют, Слава отдает изумительную передачу из за спины прямо на Матвея, который находится за трехочковой линией" <<std::endl;
 
     Slava.PlusAssist();
     Matvey.PlusPoint();
@@ -113,6 +117,9 @@ int main(){
     std::cout << "Какую защиту мы наблюдаем от этих двух игроков! Мяч опять у них, последний шанс на победу" << std::endl;
     std::cout << "Посмотрите! Матвей отдает передачу через всю площадку, где ее уже ожидает Слава. ОН ЗАБИВАЕТ! Казалось бы, на таймере осталась лишь пара секунд, но эти двое смогли выйграть игру!\n" << std::endl;
 
+    Matvey.PlusAssist();
+    Slava.PlusPoint();
+    Slava.PlusPoint();
 
     std::cout << "Сейчас мы можем наблюдать карточки обоих игроков со статистикой за сегодняшний матч" << std::endl;
     std::cout << "Матвей: ";
